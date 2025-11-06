@@ -1,0 +1,60 @@
+{
+  "version": "1.0.0",
+  "rules": [
+    {
+      "id": "microcytic_hypochromic",
+      "if": [
+        {"k": "hb", "op": "<", "v": 12},
+        {"k": "mcv", "op": "<", "v": 80},
+        {"k": "mchc", "op": "<", "v": 32},
+        {"k": "rdw", "op": ">", "v": 14.5}
+      ],
+      "modern": "Low Hb with microcytosis + hypochromia + RDW↑ → likely Iron Deficiency Anemia (consider thalassemia trait differential).",
+      "ayur": {
+        "text": "Suggests Rasa–Rakta dhātu kṣaya, Vāta↑ / Pitta↓; address nidāna (alpāhāra, manda agni). After Āma reduction, consider Loha-kalpa."
+      },
+      "suggest": {
+        "keywords": ["loha", "pippali", "triphala", "amalaki", "draksha", "punarnava"]
+      },
+      "guards": [
+        {"k": "ferritin", "op": ">", "v": 300, "msg": "Avoid iron preparations due to high ferritin.", "blockSuggest": true},
+        {"k": "transf_sat", "op": ">", "v": 45, "msg": "Avoid iron preparations due to high transferrin saturation.", "blockSuggest": true}
+      ]
+    },
+    {
+      "id": "hepatocellular_pattern",
+      "if": [
+        {"k": "alt", "op": ">", "v": 60},
+        {"k": "alt", "op": ">", "v": 40},
+        {"k": "alt", "op": ">", "v":  "ast"}
+      ],
+      "modern": "Hepatocellular pattern (ALT elevated, > AST). Evaluate drugs/viral/NAFLD; consider ultrasound if indicated.",
+      "ayur": {
+        "text": "Yakṛt duṣṭi with Pitta prakopa. Favor śītala/tiktā dravya; avoid guggulu."
+      },
+      "suggest": {
+        "keywords": ["bhumi amalaki","katuki","punarnava","guduchi","tiktaka ghrita"]
+      },
+      "guards": [
+        {"k":"alt","op":">", "v":100, "msg":"Avoid guggulu and strong ushna drugs when ALT very high.", "blockSuggest":false}
+      ]
+    },
+    {
+      "id": "primary_hypothyroid",
+      "if": [
+        {"k":"tsh","op":">", "v":10},
+        {"k":"ft4","op":"<","v":0.8}
+      ],
+      "modern": "TSH>10 with low FT4 → Primary hypothyroidism likely.",
+      "ayur": {
+        "text": "Agni mandya with Kapha↑ Vāta↑ pattern. Begin with Dīpana-Pācana; avoid heavy guru dravyas initially."
+      },
+      "suggest": {
+        "keywords": ["pippali","shunthi","maricha","trikatu","guggulu"]
+      },
+      "guards": [
+        {"k":"ama_dummy","op":">", "v":60, "msg":"High Āma: prioritize Dīpana–Pācana; delay heavy Rasāyana.", "blockSuggest":false}
+      ]
+    }
+  ]
+}
