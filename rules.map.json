@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.0.1",
   "rules": [
     {
       "id": "microcytic_hypochromic",
@@ -13,6 +13,7 @@
       "ayur": {
         "text": "Suggests Rasa–Rakta dhātu kṣaya, Vāta↑ / Pitta↓; address nidāna (alpāhāra, manda agni). After Āma reduction, consider Loha-kalpa."
       },
+      "roganidana": "Pandu",
       "suggest": {
         "keywords": ["loha", "pippali", "triphala", "amalaki", "draksha", "punarnava"]
       },
@@ -25,13 +26,13 @@
       "id": "hepatocellular_pattern",
       "if": [
         {"k": "alt", "op": ">", "v": 60},
-        {"k": "alt", "op": ">", "v": 40},
-        {"k": "alt", "op": ">", "v":  "ast"}
+        {"k": "alt", "op": ">", "v": "ast"}
       ],
       "modern": "Hepatocellular pattern (ALT elevated, > AST). Evaluate drugs/viral/NAFLD; consider ultrasound if indicated.",
       "ayur": {
         "text": "Yakṛt duṣṭi with Pitta prakopa. Favor śītala/tiktā dravya; avoid guggulu."
       },
+      "roganidana": "Kamala",
       "suggest": {
         "keywords": ["bhumi amalaki","katuki","punarnava","guduchi","tiktaka ghrita"]
       },
@@ -43,7 +44,7 @@
       "id": "primary_hypothyroid",
       "if": [
         {"k":"tsh","op":">", "v":10},
-        {"k":"ft4","op":"<","v":0.8}
+        {"k":"t4","op":"<","v":0.8} 
       ],
       "modern": "TSH>10 with low FT4 → Primary hypothyroidism likely.",
       "ayur": {
@@ -54,6 +55,24 @@
       },
       "guards": [
         {"k":"ama_dummy","op":">", "v":60, "msg":"High Āma: prioritize Dīpana–Pācana; delay heavy Rasāyana.", "blockSuggest":false}
+      ]
+    },
+    {
+      "id": "amavata_inflammatory_pattern",
+      "if": [
+        {"k": "rdw", "op": ">", "v": 15},
+        {"k": "eosinophils", "op": ">", "v": 5}
+      ],
+      "modern": "High RDW and Eosinophils are non-specific inflammatory markers. RDW suggests chronic inflammation. Eosinophils suggest immune/allergic activity.",
+      "ayur": {
+        "text": "This pattern of chronic inflammation (high RDW) and immune response (Eosinophilia) can be seen in conditions involving Ama and Vata, such as Amavata."
+      },
+      "roganidana": "Amavata",
+      "suggest": {
+        "keywords": ["shunthi", "guggulu", "rasna", "eranda", "castor oil"]
+      },
+      "guards": [
+         {"k":"alt","op":">", "v":100, "msg":"Caution with Guggulu due to high ALT.", "blockSuggest":false}
       ]
     }
   ]
